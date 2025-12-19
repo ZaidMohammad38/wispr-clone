@@ -1,7 +1,20 @@
-# Tauri + Vanilla
+# Wispr Clone (Tauri)
 
-This template should help get you started developing with Tauri in vanilla HTML, CSS and Javascript.
+A desktop application built using **Tauri + Vanilla JavaScript**.
 
-## Recommended IDE Setup
+## Tech Stack
+- Tauri
+- JavaScript
+- HTML5
+- CSS3
+- Rust (backend via Tauri)
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+## Status
+✅ Project initialized  
+✅ Tauri dev environment set up  
+🚧 UI & features in progress
+
+## How to Run
+```bash
+npm install
+npm run tauri dev
