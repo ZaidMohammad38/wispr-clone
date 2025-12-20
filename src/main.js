@@ -1,18 +1,49 @@
-const { invoke } = window.__TAURI__.core;
+let mediaRecorder;
+let audioChunks = [];
 
-let greetInputEl;
-let greetMsgEl;
+const startBtn = document.getElementById("startBtn");
+const stopBtn = document.getElementById("stopBtn");
+const statusEl = document.getElementById("status");
+const transcriptEl = document.getElementById("output");
 
-async function greet() {
-  // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-  greetMsgEl.textContent = await invoke("greet", { name: greetInputEl.value });
+async function startRecording() {
+  const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+
+  mediaRecorder = new MediaRecorder(stream);
+  audioChunks = [];
+
+  mediaRecorder.ondataavailable = (event) => {
+    audioChunks.push(event.data);
+  };
+
+  mediaRecorder.start();
+
+  statusEl.textContent = "Recording...";
+  transcriptEl.value = "";
+
+  startBtn.disabled = true;
+  stopBtn.disabled = false;
 }
 
-window.addEventListener("DOMContentLoaded", () => {
-  greetInputEl = document.querySelector("#greet-input");
-  greetMsgEl = document.querySelector("#greet-msg");
-  document.querySelector("#greet-form").addEventListener("submit", (e) => {
-    e.preventDefault();
-    greet();
-  });
-});
+function stopRecording() {
+  mediaRecorder.stop();
+
+  statusEl.textContent = "Transcribing...";
+  startBtn.disabled = false;
+  stopBtn.disabled = true;
+
+  mediaRecorder.onstop = () => {
+    const audioBlob = new Blob(audioChunks, { type: "audio/webm" });
+    console.log("Audio recorded:", audioBlob);
+
+    // 🔴 FAKE TRANSCRIPT (Assignment-friendly)
+    setTimeout(() => {
+      transcriptEl.value =
+        "This is a simulated transcription. Real Whisper integration planned.";
+      statusEl.textContent = "Done";
+    }, 1500);
+  };
+}
+
+startBtn.addEventListener("click", startRecording);
+stopBtn.addEventListener("click", stopRecording);
