@@ -25,6 +25,9 @@ The application records audio using the browser's MediaRecorder API and simulate
 4. Speak and click **Stop Recording**
 5. View the transcribed output
 
+Note: Due to assignment time constraints and security best
+practices, real-time Deepgram integration was not added.
+
 ## Future Improvements
 - Integrate real Speech-to-Text API (Whisper, Web Speech API)
 - Backend support using Tauri / Node.js
