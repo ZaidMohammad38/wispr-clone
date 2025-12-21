@@ -1,7 +1,35 @@
-# Tauri + Vanilla
+# Wispr Clone (Voice to Text Demo)
 
-This template should help get you started developing with Tauri in vanilla HTML, CSS and Javascript.
+This is a basic prototype inspired by Wispr AI.
 
-## Recommended IDE Setup
+The application records audio using the browser's MediaRecorder API and simulates a speech-to-text transcription.
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+> Note: This project does not use real speech-to-text APIs. The transcription is simulated for demonstration purposes.
+
+## Features
+- Start / Stop audio recording
+- Microphone access using browser APIs
+- Simulated transcription output
+- Simple and clean UI
+
+## Technologies Used
+- HTML
+- CSS
+- JavaScript
+- MediaRecorder API
+
+## How to Run
+1. Open `index.html` in a modern browser (Chrome recommended)
+2. Allow microphone permission
+3. Click **Start Recording**
+4. Speak and click **Stop Recording**
+5. View the transcribed output
+
+## Future Improvements
+- Integrate real Speech-to-Text API (Whisper, Web Speech API)
+- Backend support using Tauri / Node.js
+- Audio file upload support
+
+---
+
+Assignment completed as a functional frontend prototype.

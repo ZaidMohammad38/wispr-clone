@@ -4,9 +4,9 @@ let audioChunks = [];
 const startBtn = document.getElementById("startBtn");
 const stopBtn = document.getElementById("stopBtn");
 const statusEl = document.getElementById("status");
-const transcriptEl = document.getElementById("output");
+const outputEl = document.getElementById("output");
 
-async function startRecording() {
+startBtn.addEventListener("click", async () => {
   const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
   mediaRecorder = new MediaRecorder(stream);
@@ -19,31 +19,26 @@ async function startRecording() {
   mediaRecorder.start();
 
   statusEl.textContent = "Recording...";
-  transcriptEl.value = "";
-
   startBtn.disabled = true;
   stopBtn.disabled = false;
-}
+});
 
-function stopRecording() {
+stopBtn.addEventListener("click", () => {
   mediaRecorder.stop();
 
-  statusEl.textContent = "Transcribing...";
+  statusEl.textContent = "Processing...";
   startBtn.disabled = false;
   stopBtn.disabled = true;
 
   mediaRecorder.onstop = () => {
     const audioBlob = new Blob(audioChunks, { type: "audio/webm" });
-    console.log("Audio recorded:", audioBlob);
+    console.log("Recorded audio:", audioBlob);
 
-    // 🔴 FAKE TRANSCRIPT (Assignment-friendly)
+    // ✅ Fake transcript
     setTimeout(() => {
-      transcriptEl.value =
-        "This is a simulated transcription. Real Whisper integration planned.";
+      outputEl.value =
+        "This is a simulated transcription. Real speech-to-text integration coming soon.";
       statusEl.textContent = "Done";
     }, 1500);
   };
-}
-
-startBtn.addEventListener("click", startRecording);
-stopBtn.addEventListener("click", stopRecording);
+});
